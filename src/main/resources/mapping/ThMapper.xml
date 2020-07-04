@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gris.snmp.mapper.ThMapper" >
+  <resultMap id="BaseResultMap" type="com.gris.snmp.pojo.TemAndHum" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="temperature" property="temperature" jdbcType="VARCHAR" />
+    <result column="humidity" property="humidity" jdbcType="VARCHAR" />
+    <result column="collect_time" property="collectTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insertThData" parameterType="com.gris.snmp.pojo.TemAndHum" useGeneratedKeys="true">
+
+    insert into
+        environment (temperature,humidity,collect_time)
+        values(#{temAndHum.temperature},#{temAndHum.humidity},#{temAndHum.collectTime})
+
+  </insert>
+
+</mapper>

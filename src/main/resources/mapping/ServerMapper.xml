@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gris.snmp.mapper.ServerMapper" >
+  <resultMap id="BaseResultMap" type="com.gris.snmp.pojo.ServerData" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="total_ram" property="totalRAM" jdbcType="INTEGER" />
+    <result column="using_ram" property="usingRAM" jdbcType="INTEGER" />
+    <result column="system_info" property="systemInfo" jdbcType="VARCHAR" />
+    <result column="monitor_time" property="monitorTime" jdbcType="TIMESTAMP" />
+    <result column="user_precent_cpu" property="userPrecentCpu" jdbcType="VARCHAR" />
+    <result column="system_precent_cpu" property="systemPrecentCpu" jdbcType="VARCHAR" />
+    <result column="free_precent_cpu" property="freePrecentCpu" jdbcType="VARCHAR" />
+    <result column="ram_precent" property="precentOfRAM" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insertServerData" parameterType="com.gris.snmp.pojo.ServerData" useGeneratedKeys="true">
+
+    insert into
+        server_data(system_info,total_ram,using_ram,ram_precent,user_precent_cpu,system_precent_cpu,free_precent_cpu,monitor_time)
+        values(#{serverData.systemInfo},#{serverData.totalRAM},#{serverData.usingRAM},
+                #{serverData.precentOfRAM},#{serverData.userPrecentCpu},#{serverData.systemPrecentCpu},
+                #{serverData.freePrecentCpu},#{serverData.monitorTime})
+  </insert>
+
+  <select id="findById" parameterType="int" resultMap="BaseResultMap">
+    select * from server_data where id = #{id}
+  </select>
+
+</mapper>
